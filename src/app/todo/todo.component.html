@@ -1,0 +1,49 @@
+<!-- <div class="jumbotron">
+    <h4 class="text-center">To Do List App</h4>
+</div> -->
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" style="font-size: xx-large;">ToDo</a>
+
+    <div class="col-md-3 text-end">
+        <button class="btn btn-light" style="margin-right: 2rem;" (click)="logout()">Logout</button>
+    </div>
+</nav>
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-6">
+            <form [formGroup]="todoForm">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="What do you need to do" name="titlebox" formControlName="titlebox" required>
+                    <div class="input-group-addon hover-cursor">
+                        <button [disabled]="!todoForm.valid" type="submit" (click)="onAdd()"><i class="fa fa-plus-circle fa-2x"></i></button>
+                    </div>
+                </div>
+            </form>
+                
+            
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-6">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let item of toDoListArray">
+                    <span class="hover-cursor" [class.text.success]="item.isChecked"
+                        (click)="alterCheck(item.$key,item.isChecked)">
+                        <i class="fa fa-lg" [ngClass]="item.isChecked?'fa-check-circle-o':'fa-circle-thin'"></i>
+                    </span>{{item.title}}
+                    <span class="hover-cursor text-danger pull-right" (click)="onDelete(item.$key)">
+                        <i class="fa fa-trash-o fa-lg"></i>
+                    </span>
+                    <span class="hover-cursor text-danger pull-right" (click)="onUpdate(item.$key, titlebox.value)">
+                        <i class="fa fa-pencil right marg_left"></i>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>

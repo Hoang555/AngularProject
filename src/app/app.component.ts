@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FirebaseService } from './services/firebase.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AngularProject';
+  @Output() isLogout = new EventEmitter<void>()
+  constructor(public firebaseService: FirebaseService) { }
+
+
+  logout(){
+    this.firebaseService.logout()
+    this.isLogout.emit();
+  }
 }
+
+
+  
